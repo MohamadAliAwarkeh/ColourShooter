@@ -4,39 +4,45 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class PlayerSetup : NetworkBehaviour {
+public class PlayerSetup : NetworkBehaviour
+{
 
-    public Color playerColour;
-    public string baseName = "Player";
-    public int playerNum = 1;
+    [SyncVar(hook = "UpdateColour")] public Color playerColour;
+    [SyncVar(hook = "UpdateName")] public string name = "Player";
     public Text playerNameText;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
 
-        if (playerNameText != null)
+        if (!isServer)
         {
-            playerNameText.enabled = false;
+            PlayerManager pManager = GetComponent<PlayerManager>();
+            if (pManager != null)
+            {
+                GameManager.allPlayers.Add(pManager);
+            }
         }
+
+        UpdateName(name);
+        UpdateColour(playerColour);
     }
 
-    public override void OnStartLocalPlayer()
+    private void UpdateColour(Color pColour)
     {
-        base.OnStartLocalPlayer();
-
-        //This sets the local players colour, so you can differeniate who you are from the other player(s)
         MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer r in meshes)
         {
-            r.material.color = playerColour;
+            r.material.color = pColour;
         }
+    }
 
-        //This sets your name so everyone knows who you are
+    private void UpdateName(string pName)
+    {
         if (playerNameText != null)
         {
             playerNameText.enabled = true;
-            playerNameText.text = baseName + playerNum.ToString();
+            playerNameText.text = name;
         }
     }
 }

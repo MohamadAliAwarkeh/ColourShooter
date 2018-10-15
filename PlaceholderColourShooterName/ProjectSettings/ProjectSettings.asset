@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: PrimeFoolery
   productName: PlaceholderColourShooterName
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -662,9 +662,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: Template_3D
-  organizationId: 
+  cloudProjectId: 3449833d-7151-4f17-9072-6888bee8f59a
+  projectName: PlaceholderColourShooterName
+  organizationId: mohamad-ali-awarkeh-3925999
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
